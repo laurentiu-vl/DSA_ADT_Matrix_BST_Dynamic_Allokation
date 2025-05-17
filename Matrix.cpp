@@ -3,9 +3,7 @@
 #include <stdexcept>
 using namespace std;
 
-
 Matrix::Matrix(int nrLines, int nrCols) {
-
     //TODO - Implementation
 
     if (nrLines <= 0 || nrCols <= 0) {
@@ -15,7 +13,6 @@ Matrix::Matrix(int nrLines, int nrCols) {
     nrOfCols = nrCols;
     nrOfRows = nrLines;
     root = nullptr;
-
 }
 
 

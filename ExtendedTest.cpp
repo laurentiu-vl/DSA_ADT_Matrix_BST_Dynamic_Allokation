@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 void testCreate() {
 	cout << "Test create" << endl;
 	Matrix m(10, 10);
