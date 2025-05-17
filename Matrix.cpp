@@ -1,23 +1,37 @@
 #include "Matrix.h"
 #include <exception>
+#include <stdexcept>
 using namespace std;
 
 
 Matrix::Matrix(int nrLines, int nrCols) {
 
     //TODO - Implementation
+
+    if (nrLines <= 0 || nrCols <= 0) {
+        throw runtime_error("Matrix::Matrix(): Invalid input");
+    }
+
+    nrOfCols = nrCols;
+    nrOfRows = nrLines;
+    root = nullptr;
+
 }
 
 
 int Matrix::nrLines() const {
     //TODO - Implementation
-    return 0;
+    //return 0;
+
+    return nrOfRows;
 }
 
 
 int Matrix::nrColumns() const {
     //TODO - Implementation
-    return 0;
+    //return 0;
+
+    return nrOfCols;
 }
 
 
