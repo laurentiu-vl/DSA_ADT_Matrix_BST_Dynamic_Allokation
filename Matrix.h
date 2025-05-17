@@ -22,8 +22,8 @@ private:
     //Allokation gespeichert werden.
 
     //TODO - Representation
-    int nrOfRow;
-    int nrOfCol;
+    int nrOfRows;
+    int nrOfCols;
     BSTNode *root;
 
 public:
