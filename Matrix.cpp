@@ -34,7 +34,26 @@ int Matrix::nrColumns() const {
 
 TElem Matrix::element(int i, int j) const {
     //TODO - Implementation
+
+    if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
+        throw runtime_error("Matrix::element(): Invalid input");
+    }
+
+    if (nrOfRows <= 0 || nrOfCols <= 0) {
+        throw runtime_error("Matrix::element(): Invalid input");
+    }
+
+    BSTNode *parent = nullptr;
+    BSTNode *current = root;
+
+    while (current != nullptr) {
+
+    }
+
+
+
     return NULL_TELEM;
+
 }
 
 TElem Matrix::modify(int i, int j, TElem e) {
