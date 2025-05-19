@@ -71,12 +71,13 @@ TElem Matrix::modify(int i, int j, TElem e) {
     while (current != nullptr) {
         if (current->row == i && current->col == j) {
             oldInfo = current->info;
-            found = true;
+            //found = true;
             current->info = e;
-        }
-        if (found == true) {
             return oldInfo;
         }
+        // if (found == true) {
+        //     return oldInfo;
+        // }
         if (i < current->row) { //check first the line
             current = current->leftC;
         }
