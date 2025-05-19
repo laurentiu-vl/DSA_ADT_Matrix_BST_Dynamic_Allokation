@@ -4,8 +4,6 @@
 using namespace std;
 
 Matrix::Matrix(int nrLines, int nrCols) {
-    //TODO - Implementation
-
     if (nrLines <= 0 || nrCols <= 0) {
         throw runtime_error("Matrix::Matrix(): Invalid input");
     }
@@ -17,24 +15,16 @@ Matrix::Matrix(int nrLines, int nrCols) {
 
 
 int Matrix::nrLines() const {
-    //TODO - Implementation
-    //return 0;
-
     return nrOfRows;
 }
 
 
 int Matrix::nrColumns() const {
-    //TODO - Implementation
-    //return 0;
-
     return nrOfCols;
 }
 
 
 TElem Matrix::element(int i, int j) const {
-    //TODO - Implementation
-
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::element(): Invalid input");
     }
@@ -67,7 +57,15 @@ TElem Matrix::modify(int i, int j, TElem e) {
 }
 
 Matrix::~Matrix() {
-    //TODO - Implementation
+    destroyRecursive(root);
+}
+
+void Matrix::destroyRecursive(BSTNode *node) {
+    if (node) {
+        destroyRecursive(node->leftC);
+        destroyRecursive(node->rightC);
+        delete node;
+    }
 }
 
 
