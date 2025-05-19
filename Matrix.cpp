@@ -60,7 +60,7 @@ Matrix::~Matrix() {
     destroyRecursive(root);
 }
 
-void Matrix::destroyRecursive(BSTNode *node) {
+Matrix Matrix::destroyRecursive(BSTNode *node) {
     if (node) {
         destroyRecursive(node->leftC);
         destroyRecursive(node->rightC);

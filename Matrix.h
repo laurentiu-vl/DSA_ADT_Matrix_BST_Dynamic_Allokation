@@ -48,6 +48,6 @@ public:
     // destructor
     ~Matrix();
 
-    void Matrix::destroyRecursive(BSTNode *node);
+    Matrix destroyRecursive(BSTNode *node);
 
 };
