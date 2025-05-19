@@ -118,7 +118,7 @@ Matrix::~Matrix() {
     destroyRecursive(root);
 }
 
-Matrix Matrix::destroyRecursive(BSTNode *node) {
+void Matrix::destroyRecursive(BSTNode *node) {
     if (node) {
         destroyRecursive(node->leftC);
         destroyRecursive(node->rightC);
