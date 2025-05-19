@@ -1,4 +1,7 @@
 #include <assert.h>
+#include <iostream>
+#include <ostream>
+
 #include "Matrix.h"
 
 using namespace std;
