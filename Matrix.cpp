@@ -11,6 +11,7 @@ Matrix::Matrix(int nrLines, int nrCols) {
     nrOfCols = nrCols;
     nrOfRows = nrLines;
     root = nullptr;
+    //parent  = nullptr;
 
 
 
@@ -86,6 +87,28 @@ TElem Matrix::modify(int i, int j, TElem e) {
         }
         else current = current->rightC; //if i/j bigger
     }
+
+    if (e != 0) {
+        BSTNode* newNode = new BSTNode();
+        newNode->info = e;
+        newNode->row = i;
+        newNode->col = j;
+        newNode->leftC = nullptr;
+        newNode->rightC = nullptr;
+        newNode->parent = parent;
+
+        if (i == parent->row) { //check first the line
+            current = current->leftC;
+        }
+        if (i < parent->row) {
+            parent->leftC = newNode;
+        }
+        if (i == parent->row && j < parent->col) {
+            parent->rightC = newNode;
+        }
+        else parent->rightC = newNode;
+    }
+
     return NULL_TELEM;
 }
 
