@@ -47,13 +47,19 @@ TElem Matrix::element(int i, int j) const {
     BSTNode *current = root;
 
     while (current != nullptr) {
-
+        if (current->row == i && current->col == j) {
+            return current->info;
+        }
+        if (i < current->row) {
+            current = current->leftC;
+        }
+        if (i == current->row && j < current->col) {
+            current = current->leftC;
+        }
+        else current = current->rightC;
     }
 
-
-
     return NULL_TELEM;
-
 }
 
 TElem Matrix::modify(int i, int j, TElem e) {
