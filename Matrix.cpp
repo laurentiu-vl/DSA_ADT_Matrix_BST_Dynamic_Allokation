@@ -64,16 +64,22 @@ TElem Matrix::modify(int i, int j, TElem e) {
         throw runtime_error("Matrix::element(): Invalid input");
     }
 
+    if (e == 0) {
+        throw runtime_error("Matrix::element(): Invalid input");
+    }
+
     BSTNode *parent = nullptr;
     BSTNode *current = root;
     TElem oldInfo;
-    bool found = false;
+   // bool found = false;
 
     while (current != nullptr) {
+        parent = current;
         if (current->row == i && current->col == j) {
             oldInfo = current->info;
             //found = true;
             current->info = e;
+            //return oldInfo;
             return oldInfo;
         }
         // if (found == true) {
