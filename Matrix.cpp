@@ -103,18 +103,14 @@ TElem Matrix::modify(int i, int j, TElem e) {
         newNode->rightC = nullptr;
         newNode->parent = parent;
 
-        if (i == parent->row) { //check first the line
-            current = current->leftC;
+        if (parent == nullptr) {
+            root = newNode;  // First node in an empty BST
+        } else if (i < parent->row || (i == parent->row && j < parent->col)) {
+            parent->leftC = newNode;  // Correct left assignment
+        } else {
+            parent->rightC = newNode;  // Correct right assignment
         }
-        if (i < parent->row) {
-            parent->leftC = newNode;
-        }
-        if (i == parent->row && j < parent->col) {
-            parent->rightC = newNode;
-        }
-        else parent->rightC = newNode;
     }
-
     return NULL_TELEM;
 }
 
