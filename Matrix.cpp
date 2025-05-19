@@ -47,18 +47,17 @@ TElem Matrix::element(int i, int j) const {
     BSTNode *current = root;
 
     while (current != nullptr) {
-        if (current->row == i && current->col == j) {
+        if (current->row == i && current->col == j) { //if elem found
             return current->info;
         }
-        if (i < current->row) {
+        if (i < current->row) { //check first the line
             current = current->leftC;
         }
-        if (i == current->row && j < current->col) {
+        if (i == current->row && j < current->col) { //if line=i, check the column for traver to leftC
             current = current->leftC;
         }
-        else current = current->rightC;
+        else current = current->rightC; //if i/j bigger
     }
-
     return NULL_TELEM;
 }
 
