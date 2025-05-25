@@ -47,7 +47,7 @@ TElem Matrix::element(int i, int j) const {
         if (i < current->row) { //check first the line
             current = current->leftC;
         }
-        if (i == current->row && j < current->col) { //if line=i, check the column for traver to leftC
+        else if (i == current->row && j < current->col) { //if line=i, check the column for traver to leftC
             current = current->leftC;
         }
         else current = current->rightC; //if i/j bigger
@@ -57,23 +57,24 @@ TElem Matrix::element(int i, int j) const {
 
 TElem Matrix::modify(int i, int j, TElem e) {
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
-        throw runtime_error("Matrix::element(): Invalid input");
+        throw runtime_error("Matrix::modify(): Invalid input");
     }
 
     if (nrOfRows <= 0 || nrOfCols <= 0) {
-        throw runtime_error("Matrix::element(): Invalid input");
+        throw runtime_error("Matrix::modify(): Invalid input");
     }
 
     if (e == 0) {
-        throw runtime_error("Matrix::element(): Invalid input");
+        throw runtime_error("Matrix::modify(): element is 0");
     }
 
     BSTNode *parent = nullptr;
     BSTNode *current = root;
     TElem oldInfo;
-   // bool found = false;
+    bool found = false;
 
-    while (current != nullptr) {
+    while (current != nullptr) { //exceptie pt e = 0 este mai sus
+
         parent = current;
         if (current->row == i && current->col == j) {
             oldInfo = current->info;
@@ -88,13 +89,12 @@ TElem Matrix::modify(int i, int j, TElem e) {
         if (i < current->row) { //check first the line
             current = current->leftC;
         }
-        if (i == current->row && j < current->col) { //if line=i, check the column for traver to leftC
+        else if (i == current->row && j < current->col) { //if line=i, check the column for traver to leftC
             current = current->leftC;
         }
         else current = current->rightC; //if i/j bigger
     }
 
-    if (e != 0) {
         BSTNode* newNode = new BSTNode();
         newNode->info = e;
         newNode->row = i;
@@ -104,13 +104,12 @@ TElem Matrix::modify(int i, int j, TElem e) {
         newNode->parent = parent;
 
         if (parent == nullptr) {
-            root = newNode;  // First node in an empty BST
+            root = newNode;
         } else if (i < parent->row || (i == parent->row && j < parent->col)) {
-            parent->leftC = newNode;  // Correct left assignment
+            parent->leftC = newNode;
         } else {
-            parent->rightC = newNode;  // Correct right assignment
+            parent->rightC = newNode;
         }
-    }
     return NULL_TELEM;
 }
 
