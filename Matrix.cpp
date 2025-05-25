@@ -14,21 +14,15 @@ Matrix::Matrix(int nrLines, int nrCols) {
     nrOfRows = nrLines;
     root = nullptr;
     //parent  = nullptr;
-
-
-
 }
-
 
 int Matrix::nrLines() const {
     return nrOfRows;
 }
 
-
 int Matrix::nrColumns() const {
     return nrOfCols;
 }
-
 
 TElem Matrix::element(int i, int j) const {
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
