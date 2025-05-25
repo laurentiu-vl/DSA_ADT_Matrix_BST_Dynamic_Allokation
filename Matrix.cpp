@@ -1,5 +1,7 @@
 #include "Matrix.h"
 #include <exception>
+#include <iostream>
+#include <ostream>
 #include <stdexcept>
 using namespace std;
 
@@ -64,9 +66,10 @@ TElem Matrix::modify(int i, int j, TElem e) {
         throw runtime_error("Matrix::modify(): Invalid input");
     }
 
-    if (e == 0) {
-        throw runtime_error("Matrix::modify(): element is 0");
-    }
+    // if (e == NULL_TELEM) {
+    //     std::cerr << "Matrix::modify(): Invalid input" << std::endl;
+    //     return e;
+    // }
 
     BSTNode *parent = nullptr;
     BSTNode *current = root;
