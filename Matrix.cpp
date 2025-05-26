@@ -75,6 +75,13 @@ TElem Matrix::modify(int i, int j, TElem e) {
         parent = current;
         if (current->row == i && current->col == j) {
             oldInfo = current->info;
+
+            //nou
+            if (e == NULL_TELEM) {
+                root = deleteNode(root, i, j);
+                return oldInfo;
+            }
+
             //found = true;
             current->info = e;
             //return oldInfo;
@@ -90,6 +97,10 @@ TElem Matrix::modify(int i, int j, TElem e) {
             current = current->leftC;
         }
         else current = current->rightC; //if i/j bigger
+    }
+
+    if (e == NULL_TELEM) {
+        return NULL_TELEM;
     }
 
         BSTNode* newNode = new BSTNode();
@@ -121,5 +132,62 @@ void Matrix::destroyRecursive(BSTNode *node) {
         delete node;
     }
 }
+
+Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
+    while (node->leftC != nullptr) {
+        node = node->leftC;
+    }
+    return node;
+}
+
+Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
+    if (node == nullptr) {
+        return nullptr;
+    }
+    if (i < node->row || (i == node->row && j < node->col)) {
+        node->leftC = deleteNode(node->leftC, i, j);
+    }
+    else if (i > node->row || (i == node->row && j > node->col)) {
+        node->rightC = deleteNode(node->rightC, i, j);
+    }
+    else {
+        //case1
+        if (node->leftC == nullptr && node->rightC == nullptr) {
+            if (node->parent != nullptr) {
+                if (node->parent->leftC == node) {
+                    node->parent->leftC = nullptr;
+                }
+                else {
+                    node->parent->rightC = nullptr;
+                }
+            }
+            delete node;
+            return nullptr;
+        }
+        //case2
+        if (node->leftC == nullptr) {
+            BSTNode *temp = root->rightC;
+            temp->parent = root->parent;
+            delete node;
+            return temp;
+        } else if (node->rightC == nullptr) {
+            BSTNode *temp = root->leftC;
+            temp->parent = root->parent;
+            delete node;
+            return temp;
+        }
+        //case3
+        BSTNode *successor = getSuccessor(node->rightC);
+        node->info = successor->info;
+        node->row = successor->row;
+        node->col = successor->col;
+        node->rightC = deleteNode(root->rightC, successor->row, successor->col);
+    }
+    return root;
+}
+
+
+
+
 
 

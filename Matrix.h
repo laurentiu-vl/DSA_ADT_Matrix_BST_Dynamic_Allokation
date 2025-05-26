@@ -50,4 +50,8 @@ public:
 
     void destroyRecursive(BSTNode *node);
 
+    BSTNode* getSuccessor(BSTNode *node);
+
+    BSTNode* deleteNode(BSTNode *node, int i, int j);
+
 };
