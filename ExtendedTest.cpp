@@ -118,6 +118,7 @@ void testMix() {
 			}
 		}
 	}
+	std::cout<<"Ajunge 1";
 	for (int i = 0; i < size/2; i++) {
 		for (int j = 0; j < size; j++) {
 			if (i == j) {
@@ -131,7 +132,7 @@ void testMix() {
 			}
 		}
 	}
-	//std::cout<<"Ajunge";
+	std::cout<<"Ajunge 2";
 	for (int i = 0; i < size/2; i++) {
 		for (int j = 0; j < size; j++) {
 			TElem e = m.element(i, j);

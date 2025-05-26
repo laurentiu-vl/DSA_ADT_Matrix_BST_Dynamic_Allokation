@@ -177,12 +177,14 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
             return temp;
         }
         //case3
-        BSTNode *successor = getSuccessor(node->rightC);
-        // node->info = successor->info;
-        // node->row = successor->row;
-        // node->col = successor->col;
-        // node->rightC = deleteNode(root->rightC, successor->row, successor->col);
-
+        if (node->rightC == nullptr) {
+            return node;
+        }
+        BSTNode* successor = getSuccessor(node->rightC);
+        node->info = successor->info;
+        node->row = successor->row;
+        node->col = successor->col;
+        node->rightC = deleteNode(node->rightC, successor->row, successor->col);
     }
     return root;
 }
