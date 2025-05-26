@@ -7,8 +7,10 @@
 using namespace std;
 
 int main() {
-    testAll();
-    testAllExtended();
+    //testAll();
+
+    testAllLaurentiu();
+    //testAllExtended();
     cout << "Test End" << endl;
     system("pause");
 }
