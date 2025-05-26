@@ -166,13 +166,13 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
         }
         //case2
         if (node->leftC == nullptr) {
-            BSTNode *temp = root->rightC;
-            temp->parent = root->parent;
+            BSTNode *temp = node->rightC;
+            temp->parent = node->parent;
             delete node;
             return temp;
         } else if (node->rightC == nullptr) {
-            BSTNode *temp = root->leftC;
-            temp->parent = root->parent;
+            BSTNode *temp = node->leftC;
+            temp->parent = node->parent;
             delete node;
             return temp;
         }
@@ -185,8 +185,24 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
         node->row = successor->row;
         node->col = successor->col;
         node->rightC = deleteNode(node->rightC, successor->row, successor->col);
+
+        // BSTNode* successor = getSuccessor(node->rightC);
+        //
+        // node->info = successor->info;
+        // node->row = successor->row;
+        // node->col = successor->col;
+        //
+        // if (successor->parent->leftC == successor) {
+        //     successor->parent->leftC = successor->rightC;
+        // } else {
+        //     successor->parent->rightC = successor->rightC;
+        // }
+        // if (successor->rightC != nullptr) {
+        //     successor->rightC->parent = successor->parent;
+        // }
+        // delete successor;
     }
-    return root;
+    return node;
 }
 
 
