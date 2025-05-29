@@ -70,26 +70,27 @@ TElem Matrix::modify(int i, int j, TElem e) {
     TElem oldInfo;
     bool found = false;
 
-    while (current != nullptr) { //exceptie pt e = 0 este mai sus
+    while (current != nullptr) { //while for searching the elem to be modified
 
         parent = current;
-        if (current->row == i && current->col == j) {
+        if (current->row == i && current->col == j) { //if elem i, j found
             oldInfo = current->info;
 
-            //nou
-            if (e == NULL_TELEM) {
-                root = deleteNode(root, i, j);
+            if (e == NULL_TELEM) { //condition for e NULL
+                root = deleteNode(root, i, j); //call for delete and return oldInfo
                 return oldInfo;
             }
 
             //found = true;
-            current->info = e;
+            current->info = e; //if e not NULL, modify the elem in bst
             //return oldInfo;
             return oldInfo;
         }
         // if (found == true) {
         //     return oldInfo;
         // }
+
+        //iteration through bst to find the elem i, j
         if (i < current->row) { //check first the line
             current = current->leftC;
         }
@@ -99,10 +100,11 @@ TElem Matrix::modify(int i, int j, TElem e) {
         else current = current->rightC; //if i/j bigger
     }
 
-    if (e == NULL_TELEM) {
-        return NULL_TELEM;
-    }
+    // if (e == NULL_TELEM) {
+    //     return NULL_TELEM;
+    // }
 
+        //if elem i, j not found in the iteration -> create a node
         BSTNode* newNode = new BSTNode();
         newNode->info = e;
         newNode->row = i;
@@ -111,22 +113,24 @@ TElem Matrix::modify(int i, int j, TElem e) {
         newNode->rightC = nullptr;
         newNode->parent = parent;
 
+        //asign the new node to the correct parent in bst
         if (parent == nullptr) {
             root = newNode;
-        } else if (i < parent->row || (i == parent->row && j < parent->col)) {
+        } else if (i < parent->row || (i == parent->row && j < parent->col)) { //parent on left side ->
             parent->leftC = newNode;
         } else {
-            parent->rightC = newNode;
+            parent->rightC = newNode; //parent on right side ->
         }
     return NULL_TELEM;
 }
 
 Matrix::~Matrix() {
-    destroyRecursive(root);
+    destroyRecursive(root); //call
 }
 
 void Matrix::destroyRecursive(BSTNode *node) {
-    if (node) {
+    if (node) { //if node not null ptr, call again the function
+        //and iterate left or right until the last node
         destroyRecursive(node->leftC);
         destroyRecursive(node->rightC);
         delete node;
@@ -144,21 +148,21 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
     if (node == nullptr) {
         return nullptr;
     }
-    if (i < node->row || (i == node->row && j < node->col)) {
-        node->leftC = deleteNode(node->leftC, i, j);
+    if (i < node->row || (i == node->row && j < node->col)) { //check on which side to iterate
+        node->leftC = deleteNode(node->leftC, i, j); //call delete()
     }
-    else if (i > node->row || (i == node->row && j > node->col)) {
-        node->rightC = deleteNode(node->rightC, i, j);
+    else if (i > node->row || (i == node->row && j > node->col)) { //check on which side to iterate
+        node->rightC = deleteNode(node->rightC, i, j); //call delete()
     }
-    else {
+    else { //if i, j found
         //case1
-        if (node->leftC == nullptr && node->rightC == nullptr) {
+        if (node->leftC == nullptr && node->rightC == nullptr) { //the found elem i, j has no children
             if (node->parent != nullptr) {
-                if (node->parent->leftC == node) {
+                if (node->parent->leftC == node) { //parent found and check if the node is on left
                     node->parent->leftC = nullptr;
                 }
                 else {
-                    node->parent->rightC = nullptr;
+                    node->parent->rightC = nullptr; //parent found and check if the node is on right
                 }
             }
             delete node;
