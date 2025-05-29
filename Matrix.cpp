@@ -5,7 +5,7 @@
 #include <stdexcept>
 using namespace std;
 
-Matrix::Matrix(int nrLines, int nrCols) {
+Matrix::Matrix(int nrLines, int nrCols) { //theta 1
     if (nrLines <= 0 || nrCols <= 0) {
         throw runtime_error("Matrix::Matrix(): Invalid input");
     }
@@ -16,15 +16,16 @@ Matrix::Matrix(int nrLines, int nrCols) {
     //parent  = nullptr;
 }
 
-int Matrix::nrLines() const {
+int Matrix::nrLines() const { //theta 1
     return nrOfRows;
 }
 
-int Matrix::nrColumns() const {
+int Matrix::nrColumns() const { //theta 1
     return nrOfCols;
 }
 
 TElem Matrix::element(int i, int j) const {
+    //best: theta1 avg: ologn, worst: thetan
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::element(): Invalid input");
     }
@@ -51,7 +52,7 @@ TElem Matrix::element(int i, int j) const {
     return NULL_TELEM;
 }
 
-TElem Matrix::modify(int i, int j, TElem e) {
+TElem Matrix::modify(int i, int j, TElem e) { //ologn
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::modify(): Invalid input");
     }
@@ -124,11 +125,11 @@ TElem Matrix::modify(int i, int j, TElem e) {
     return NULL_TELEM;
 }
 
-Matrix::~Matrix() {
+Matrix::~Matrix() { //theta n
     destroyRecursive(root); //call
 }
 
-void Matrix::destroyRecursive(BSTNode *node) {
+void Matrix::destroyRecursive(BSTNode *node) { //theta n
     if (node) { //if node not null ptr, call again the function
         //and iterate left or right until the last node
         destroyRecursive(node->leftC);
@@ -138,6 +139,7 @@ void Matrix::destroyRecursive(BSTNode *node) {
 }
 
 Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
+    //best: theta1, avg: ologn, worst: theta n
     if (node == nullptr) {
         return nullptr;
     }
@@ -206,15 +208,9 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
 }
 
 Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
+    //ologn all
     while (node->leftC != nullptr) {
         node = node->leftC;
     }
     return node;
 }
-
-
-
-
-
-
-
