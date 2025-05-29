@@ -156,7 +156,8 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
     }
     else { //if i, j found
         //case1
-        if (node->leftC == nullptr && node->rightC == nullptr) { //the found elem i, j has no children
+        //the found elem i, j has no children
+        if (node->leftC == nullptr && node->rightC == nullptr) {
             if (node->parent != nullptr) {
                 if (node->parent->leftC == node) { //parent found and check if the node is on left
                     node->parent->leftC = nullptr;
@@ -169,21 +170,23 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
             return nullptr;
         }
         //case2
-        if (node->leftC == nullptr) {
+        //elem i, j has a child -> check if left or right
+        if (node->leftC == nullptr) { //-> child on right
             BSTNode *temp = node->rightC;
-            temp->parent = node->parent;
+            temp->parent = node->parent; //new node points at the parent of the deleted node node
             delete node;
             return temp;
-        } else if (node->rightC == nullptr) {
+        } else if (node->rightC == nullptr) { //-> child on left
             BSTNode *temp = node->leftC;
-            temp->parent = node->parent;
+            temp->parent = node->parent; //new node points at the parent of the deleted node node
             delete node;
             return temp;
         }
+        // if (node->rightC == nullptr) {
+        //     return node;
+        // }
         //case3
-        if (node->rightC == nullptr) {
-            return node;
-        }
+        //two children
         BSTNode* successor = getSuccessor(node->rightC);
         node->info = successor->info;
         node->row = successor->row;
