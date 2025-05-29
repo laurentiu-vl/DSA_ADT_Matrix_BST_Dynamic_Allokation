@@ -52,7 +52,7 @@ TElem Matrix::element(int i, int j) const {
     return NULL_TELEM;
 }
 
-TElem Matrix::modify(int i, int j, TElem e) { //ologn
+TElem Matrix::modify(int i, int j, TElem e) { //best: theta 1 avg: theta n worst: thetan
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::modify(): Invalid input");
     }
