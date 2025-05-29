@@ -137,13 +137,6 @@ void Matrix::destroyRecursive(BSTNode *node) {
     }
 }
 
-Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
-    while (node->leftC != nullptr) {
-        node = node->leftC;
-    }
-    return node;
-}
-
 Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
     if (node == nullptr) {
         return nullptr;
@@ -211,6 +204,14 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
     }
     return node;
 }
+
+Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
+    while (node->leftC != nullptr) {
+        node = node->leftC;
+    }
+    return node;
+}
+
 
 
 
