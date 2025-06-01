@@ -180,6 +180,7 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
         // if (node->rightC == nullptr) {
         //     return node;
         // }
+
         //case3
         //two children
         BSTNode* successor = getSuccessor(node->rightC);
@@ -214,3 +215,28 @@ Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
     }
     return node;
 }
+
+void Matrix::redimensionare(int newNrLines, int nrCols) {
+
+    // root = nullptr; //iterez
+    // BSTNode *current = root;
+    //
+    // while (current != nullptr) {
+    //
+    //     if (current->row < newNrLines && current->col < nrCols) {
+    //         new BSTNode();
+    //         if (newNrLines < current->row) { //check first the line
+    //             if (current->col > nrCols) {}
+    //             current = current->leftC;
+    //         }
+    //     }
+    //
+    //     else if (newNrLines == current->row && nrCols < current->col) { //if line=i, check the column for traver to leftC
+    //         current = current->leftC;
+    //     }
+    //     else current = current->rightC; //if i/j bigger
+    //     return NULL_TELEM;
+    // }
+}
+
+

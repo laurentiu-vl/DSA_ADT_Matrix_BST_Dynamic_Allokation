@@ -4,6 +4,10 @@
 typedef int TElem;
 #define NULL_TELEM 0
 
+//
+//redimensionarea matricii
+//
+
 class Matrix {
 
 struct BSTNode {
@@ -53,5 +57,7 @@ public:
     BSTNode* getSuccessor(BSTNode *node);
 
     BSTNode* deleteNode(BSTNode *node, int i, int j);
+
+    void redimensionare(int newNrLines, int nrCols);
 
 };
