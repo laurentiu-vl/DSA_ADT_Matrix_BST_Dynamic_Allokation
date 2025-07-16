@@ -6,22 +6,23 @@ typedef int TElem;
 
 class Matrix {
 
-struct BSTNode {
-    TElem info;
-    BSTNode *leftC;
-    BSTNode *rightC;
-    BSTNode *parent;
-    int row;
-    int col;
-};
-
 private:
-    //ADT Matrix – repräsentiert als schwachbesetzte Matrix (sparse) mit Tupeln der Form
-    //(Zeile, Spalte, Wert) (Wert ≠ 0), wobei die Tupel in lexikographischen Reihenfolge nach
-    //(Zeile, Spalte) in einem BST mit einer verketteten Repräsentierung mit dynamischer
-    //Allokation gespeichert werden.
-
     //TODO - Representation
+    /* //ADT Matrix – repräsentiert als schwachbesetzte Matrix (sparse)
+     * mit Tupeln der Form (Zeile, Spalte, Wert) (Wert ≠ 0),
+     * wobei die Tupel in lexikographischen Reihenfolge nach (Zeile, Spalte) in einem BST mit einer verketteten Repräsentierung
+     * mit dynamischer Allokation gespeichert werden.
+    */
+
+    struct BSTNode {
+        TElem info;
+        BSTNode *leftC;
+        BSTNode *rightC;
+        BSTNode *parent;
+        int row;
+        int col;
+    };
+
     int nrOfRows;
     int nrOfCols;
     BSTNode *root;

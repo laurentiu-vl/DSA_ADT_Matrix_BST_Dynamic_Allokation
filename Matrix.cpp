@@ -5,7 +5,7 @@
 #include <stdexcept>
 using namespace std;
 
-Matrix::Matrix(int nrLines, int nrCols) { //theta 1
+Matrix::Matrix(int nrLines, int nrCols) { //theta(1)
     if (nrLines <= 0 || nrCols <= 0) {
         throw runtime_error("Matrix::Matrix(): Invalid input");
     }
@@ -16,16 +16,16 @@ Matrix::Matrix(int nrLines, int nrCols) { //theta 1
     //parent  = nullptr;
 }
 
-int Matrix::nrLines() const { //theta 1
+int Matrix::nrLines() const { //theta(1)
     return nrOfRows;
 }
 
-int Matrix::nrColumns() const { //theta 1
+int Matrix::nrColumns() const { //theta(1)
     return nrOfCols;
 }
 
 TElem Matrix::element(int i, int j) const {
-    //best: theta1 avg: ologn, worst: thetan
+    //best: theta(1) avg: olog(n), worst: theta(n)
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::element(): Invalid input");
     }
@@ -52,7 +52,7 @@ TElem Matrix::element(int i, int j) const {
     return NULL_TELEM;
 }
 
-TElem Matrix::modify(int i, int j, TElem e) { //best: theta 1 avg: theta n worst: thetan
+TElem Matrix::modify(int i, int j, TElem e) { //best: theta(1) avg: theta(n) worst: theta(n)
     if (i < 0 || j < 0 || i >= nrOfRows || j >= nrOfCols) {
         throw runtime_error("Matrix::modify(): Invalid input");
     }
@@ -125,11 +125,11 @@ TElem Matrix::modify(int i, int j, TElem e) { //best: theta 1 avg: theta n worst
     return NULL_TELEM;
 }
 
-Matrix::~Matrix() { //theta n
+Matrix::~Matrix() { //theta(n)
     destroyRecursive(root); //call
 }
 
-void Matrix::destroyRecursive(BSTNode *node) { //theta n
+void Matrix::destroyRecursive(BSTNode *node) { //theta(n)
     if (node) { //if node not null ptr, call again the function
         //and iterate left or right until the last node
         destroyRecursive(node->leftC);
@@ -139,7 +139,7 @@ void Matrix::destroyRecursive(BSTNode *node) { //theta n
 }
 
 Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
-    //best: theta1, avg: ologn, worst: theta n
+    //best: theta(1), avg: olog(1), worst: theta(1)
     if (node == nullptr) {
         return nullptr;
     }
@@ -188,32 +188,14 @@ Matrix::BSTNode *Matrix::deleteNode(BSTNode *node, int i, int j) {
         node->row = successor->row;
         node->col = successor->col;
         node->rightC = deleteNode(node->rightC, successor->row, successor->col);
-
-        // BSTNode* successor = getSuccessor(node->rightC);
-        //
-        // node->info = successor->info;
-        // node->row = successor->row;
-        // node->col = successor->col;
-        //
-        // if (successor->parent->leftC == successor) {
-        //     successor->parent->leftC = successor->rightC;
-        // } else {
-        //     successor->parent->rightC = successor->rightC;
-        // }
-        // if (successor->rightC != nullptr) {
-        //     successor->rightC->parent = successor->parent;
-        // }
-        // delete successor;
     }
     return node;
 }
 
 Matrix::BSTNode *Matrix::getSuccessor(BSTNode *node) {
-    //ologn all
+    //olog(n) all
     while (node->leftC != nullptr) {
         node = node->leftC;
     }
     return node;
 }
-
-
